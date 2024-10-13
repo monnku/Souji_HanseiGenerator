@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <title>掃除反省ジェネレータ</title>
+</head>
+<body>
+  <style>
+    body{
+      background-color: #ddd;
+    }
+    .main{
+      color: #444;
+    }
+    button{
+      background-color: #eee;
+      border: none;
+    }
+  </style>
+  <div class="main">
+    <h1>掃除反省ジェネレータ</h1>
+    <select id="select">
+      <option disabled>道具</option>
+      <option value="houki" selected>ほうき</option>
+      <option value="zokin">雑巾</option>
+      <option value="kokuban1">前黒板</option>
+      <option value="kokuban2">後黒板</option>
+    </select>
+    <p>
+      result:<br>
+      <span id="result"></span>
+    </p>
+    <button onclick="generate()">作成</button>
+  </div>
+  <script>
+    let tool = 'ほうき';
+    const select = document.getElementById('select');
+    select.addEventListener('change', (e) => {
+      let tool = e.target.value;
+    });
+    function generate(){
+      let houki = {
+        '場所':['黒板の下','棚の下','棚の溝','壁際'],
+        '補語1':['まで時間いっぱい','といった色々なところを','などを時間通りに','などの細かいところを','など、細かいところまで'],
+        '補語2':['掃除できたので','きれいにすることができたので','掃くことができたので'],
+        '次':['次はもっといろいろなところを掃除します','次も細かいところまで掃きたいです','次はもっと時間に余裕をもって終わらせます']
+      }
+      let zokin = {
+        '場所':['黒板の下','棚の下','棚の溝','壁際'],
+        '補語1':['まで時間いっぱい','といった色々なところを','などを時間通りに','などの細かいところを','など、細かいところまで'],
+        '補語2':['掃除できたので','きれいにすることができたので','拭けたので'],
+        '次':['次は全体的にきれいに掃除します','次も細かいところまで拭きたいです','次はもっと時間に余裕をもって終わらせます']
+      }
+      let kokuban1 = {
+        '場所':['スクリーン','黒板の溝'],
+        '補語1':['をきれいに','のような細かいところまで','まで時間通りに'],
+        '補語2':['掃除できたので','きれいにすることができたので'],
+        '次':['次は全体を掃除します','次は黒板をもっときれいに掃除しつつ、細かいところを掃除します','次はもっと時間に余裕をもって終わらせます']
+      }
+      let kokuban2 = {
+        '場所':['黒板の溝'],
+        '補語1':['をきれいに','のような細かいところまで','まで時間通りに','を掃除したり、チョークを並べたりして'],
+        '補語2':['掃除できたので','きれいにすることができたので'],
+        '次':['次は全体を掃除します','次は黒板をもっときれいに掃除しつつ、細かいところを掃除します','次はもっと時間に余裕をもって終わらせます']
+      }
+      let data = eval(tool);
+      result = '';
+      result += data['場所'][Math.floor(Math.random()*data['場所'].length)];
+      result += data['補語1'][Math.floor(Math.random()*data['補語1'].length)];
+      result += data['補語2'][Math.floor(Math.random()*data['補語2'].length)];
+      result += data['次'][Math.floor(Math.random()*data['次'].length)];
+      document.getElementsById('result').innerHTML = result;
+    }
+  </script>
+</body>
