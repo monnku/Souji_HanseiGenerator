@@ -33,17 +33,10 @@
       result:<br>
       <span id="result"></span>
     </p>
-    <button onclick="generate();">作成</button>
+    <button onclick="generate(document.getElementById('select').value);">作成</button>
   </div>
   <script>
-    var tool = 'houki';
-    const select = document.getElementById('select');
-    select.addEventListener('change', 
-      function(){
-        var tool = select.value;
-      }
-    );
-    function generate(){
+    function generate(tool){
       console.log(tool)
       let houki = {
         '場所':['黒板の下','棚の下','棚の溝','壁際'],
