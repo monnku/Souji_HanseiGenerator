@@ -36,11 +36,11 @@
     <button onclick="generate();">作成</button>
   </div>
   <script>
-    let tool = 'houki';
+    var tool = 'houki';
     const select = document.getElementById('select');
     select.addEventListener('change', 
       function(){
-        let tool = select.value;
+        var tool = select.value;
       }
     });
     function generate(){
